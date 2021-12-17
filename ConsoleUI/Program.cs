@@ -1,5 +1,7 @@
 ﻿using Business.Concrete;
-using DataAccess.Concrete.InMemory;
+using DataAccess.Abstract;
+using DataAccess.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using System;
 
 namespace ConsoleUI
@@ -8,9 +10,14 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ProductManager productManager = new ProductManager(new InMemoryProductDal());
+            //SOLID
+            //O:Open Closed Principle
+            //Yaptığın yazılıma yeni bir özellik ekliyorsan mevcut hiçbir koduna dokunmamalısın.
+            //Biz burada sadece bir klasör ekleyip, konfigurasyonu değiştirdik, kodlara dokunmadık.
 
-            foreach (var product in productManager.GetAll())
+            ProductManager productManager = new ProductManager(new EfProductDal());
+
+            foreach (var product in productManager.GetAllByCategoryId(2))
             {
                 Console.WriteLine(product.ProductName);
             }
