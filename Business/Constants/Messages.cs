@@ -13,6 +13,7 @@ namespace Business.Constants
        
         public static string ProductsListed = " Products Listed";
 
-        public static string MaintenanceTime = " System is on Maintenance"; 
+        public static string MaintenanceTime = " System is on Maintenance";
+
     }
 }
